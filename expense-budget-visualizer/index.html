@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Budget Visualizer</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body data-theme="light">
+    <header>
+      <h1>Expense Budget Visualizer</h1>
+      <button id="theme-toggle">🌙 Dark Mode</button>
+    </header>
+
+    <main>
+      <!-- Left / top panel: inputs -->
+      <section id="input-section">
+
+        <!-- Transaction form -->
+        <form id="transaction-form" novalidate>
+          <div class="form-group">
+            <label for="item-name">Item Name</label>
+            <input
+              id="item-name"
+              type="text"
+              maxlength="100"
+              placeholder="e.g. Coffee"
+            />
+            <span class="error-msg" id="item-name-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="item-amount">Amount</label>
+            <input
+              id="item-amount"
+              type="number"
+              min="0.01"
+              max="9999999.99"
+              step="0.01"
+              placeholder="e.g. 25000"
+            />
+            <span class="error-msg" id="item-amount-error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="item-category">Category</label>
+            <select id="item-category">
+              <option value="" disabled selected>Select a category</option>
+            </select>
+            <span class="error-msg" id="item-category-error" aria-live="polite"></span>
+          </div>
+
+          <button type="submit">Add Transaction</button>
+        </form>
+
+        <!-- Custom category sub-form -->
+        <form id="category-form" novalidate>
+          <div class="form-group">
+            <label for="custom-category">Add Custom Category</label>
+            <input
+              id="custom-category"
+              type="text"
+              maxlength="30"
+              placeholder="e.g. Healthcare"
+            />
+            <span class="error-msg" id="custom-category-error" aria-live="polite"></span>
+          </div>
+          <button type="submit">Add Category</button>
+        </form>
+
+        <!-- Spending limit control -->
+        <div id="spending-limit-section">
+          <label for="spending-limit-input">Spending Limit</label>
+          <div class="input-row">
+            <input
+              id="spending-limit-input"
+              type="number"
+              min="0.01"
+              step="0.01"
+              placeholder="e.g. 500000"
+            />
+            <button id="set-limit-btn">Set Limit</button>
+          </div>
+          <span class="error-msg" id="spending-limit-error" aria-live="polite"></span>
+        </div>
+
+      </section>
+
+      <!-- Right / bottom panel: summary -->
+      <section id="summary-section">
+
+        <!-- Balance display -->
+        <div id="balance-display">
+          Total: <span id="balance-amount">0.00</span>
+        </div>
+
+        <!-- Month filter -->
+        <div id="filter-section">
+          <label for="month-filter">Filter by Month</label>
+          <input id="month-filter" type="month" />
+          <button id="clear-filter-btn">Clear Filter</button>
+        </div>
+
+        <!-- Sort control -->
+        <div id="sort-section">
+          <label for="sort-control">Sort by</label>
+          <select id="sort-control">
+            <option value="none">None</option>
+            <option value="amount-asc">Amount ↑</option>
+            <option value="amount-desc">Amount ↓</option>
+            <option value="category-az">Category A–Z</option>
+            <option value="category-za">Category Z–A</option>
+          </select>
+        </div>
+
+        <!-- Transaction list -->
+        <ul id="transaction-list"></ul>
+
+        <!-- Pie chart -->
+        <div id="chart-container">
+          <canvas id="pie-chart"></canvas>
+          <p id="chart-placeholder">No data available</p>
+        </div>
+
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/app.js" defer></script>
+  </body>
+</html>

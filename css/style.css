@@ -1,0 +1,425 @@
+/* ============================================================
+   CSS Custom Properties — Light Theme (default)
+   ============================================================ */
+:root {
+  --bg: #f5f5f5;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --accent: #4f46e5;
+  --warning: #dc2626;
+  --border: #d1d5db;
+}
+
+/* ============================================================
+   CSS Custom Properties — Dark Theme
+   ============================================================ */
+body[data-theme="dark"] {
+  --bg: #111827;
+  --surface: #1f2937;
+  --text: #f9fafb;
+  --accent: #818cf8;
+  --warning: #f87171;
+  --border: #374151;
+}
+
+/* ============================================================
+   Base Reset & Body
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ============================================================
+   Main Layout — two-column grid (wide screens)
+   ============================================================ */
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Single-column on narrow screens */
+@media (max-width: 767px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   Input Section
+   ============================================================ */
+#input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ============================================================
+   Summary Section
+   ============================================================ */
+#summary-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ============================================================
+   Form Groups & Labels
+   ============================================================ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+label {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.875rem;
+}
+
+/* ============================================================
+   Input & Select
+   ============================================================ */
+input,
+select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.25s ease,
+    color 0.25s ease;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+button {
+  padding: 0.5rem 1rem;
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background-color 0.25s ease;
+}
+
+button:hover {
+  opacity: 0.88;
+}
+
+button:active {
+  opacity: 0.75;
+}
+
+/* ============================================================
+   Input Row — side-by-side input + button
+   ============================================================ */
+.input-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+.input-row button {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Transaction List
+   ============================================================ */
+#transaction-list {
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  transition: border-color 0.25s ease;
+}
+
+#transaction-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9375rem;
+  transition: border-color 0.25s ease;
+}
+
+#transaction-list li:last-child {
+  border-bottom: none;
+}
+
+/* Name takes remaining space */
+#transaction-list li .tx-name {
+  flex: 1;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Amount — fixed width, right-aligned */
+#transaction-list li .tx-amount {
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Category badge */
+#transaction-list li .tx-category {
+  font-size: 0.8125rem;
+  color: var(--text);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Delete Button
+   ============================================================ */
+.delete-btn {
+  padding: 0.25rem 0.5rem;
+  background-color: var(--warning);
+  color: #ffffff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+
+.delete-btn:hover {
+  opacity: 0.85;
+}
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+.empty-state {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: var(--text);
+  opacity: 0.5;
+  font-size: 0.9375rem;
+}
+
+/* ============================================================
+   Chart Container
+   ============================================================ */
+#chart-container {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  transition: border-color 0.25s ease;
+}
+
+#chart-placeholder {
+  text-align: center;
+  color: var(--text);
+  opacity: 0.5;
+  font-size: 0.9375rem;
+  padding: 2rem 0;
+}
+
+/* ============================================================
+   Inline Validation Error Messages
+   ============================================================ */
+.error-msg {
+  display: block;
+  color: var(--warning);
+  font-size: 0.8125rem;
+  min-height: 1.125rem; /* prevents layout shift when message appears/disappears */
+}
+
+/* ============================================================
+   Balance Display  (Req 3.1, 9.3, 9.4, 10.2)
+   ============================================================ */
+#balance-display {
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  /* theme transition ≤ 300ms — satisfies Req 10.2 */
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+#balance-display #balance-amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  transition: color 0.25s ease;
+}
+
+/* Warning state — applied when total strictly exceeds spending limit (Req 9.3) */
+#balance-display.balance-warning {
+  color: var(--warning);
+  border-color: var(--warning);
+  background-color: color-mix(in srgb, var(--warning) 10%, var(--surface));
+}
+
+#balance-display.balance-warning #balance-amount {
+  color: var(--warning);
+}
+
+/* ============================================================
+   Theme Toggle Button  (Req 10.1, 10.2)
+   ============================================================ */
+#theme-toggle {
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+#theme-toggle:hover {
+  background-color: var(--border);
+  opacity: 1;
+}
+
+/* ============================================================
+   Filter Section  (Req 7.1, 7.4)
+   ============================================================ */
+#filter-section {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#filter-section input[type="month"] {
+  flex: 1;
+}
+
+#filter-section button {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+}
+
+/* ============================================================
+   Sort Section  (Req 8.1)
+   ============================================================ */
+#sort-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#sort-section select {
+  flex: 1;
+}
+
+/* ============================================================
+   Spending Limit Section  (Req 9.1, 9.2)
+   ============================================================ */
+#spending-limit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#spending-limit-section label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text);
+}
+
+#spending-limit-section .input-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#spending-limit-section .input-row input {
+  flex: 1;
+}
+
+#spending-limit-section .input-row button {
+  flex-shrink: 0;
+}
